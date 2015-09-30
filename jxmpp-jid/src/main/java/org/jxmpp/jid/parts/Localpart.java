@@ -44,13 +44,17 @@ public class Localpart extends Part {
 	}
 
 	/**
-	 * Get the {@link Localpart} representing the input String.
+	 * Get the {@link Localpart} representing the input String. Returns <code>null</code> if the input String is
+	 * <code>null</code>.
 	 *
 	 * @param localpart the input String.
-	 * @return the localpart.
+	 * @return the localpart or <code>null</code>.
 	 * @throws XmppStringprepException if an error occurs.
 	 */
 	public static Localpart from(String localpart) throws XmppStringprepException {
+		if (localpart == null) {
+			return null;
+		}
 		localpart = XmppStringPrepUtil.localprep(localpart);
 		// First prep the String, then assure the limits of the *result*
 		assertNotLongerThan1023BytesOrEmpty(localpart);

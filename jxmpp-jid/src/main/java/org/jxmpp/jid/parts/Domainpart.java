@@ -39,13 +39,17 @@ public class Domainpart extends Part {
 	}
 
 	/**
-	 * Get the {@link Domainpart} representing the input String.
+	 * Get the {@link Domainpart} representing the input String. Returns <code>null</code> if the input String is
+	 * <code>null</code>.
 	 *
 	 * @param domain the input String.
-	 * @return the domainpart.
+	 * @return the domainpart or <code>null</code>.
 	 * @throws XmppStringprepException if an error occurs.
 	 */
 	public static Domainpart from(String domain) throws XmppStringprepException {
+		if (domain == null) {
+			return null;
+		}
 		// TODO cache
 		// RFC 6122 § 2.2 "If the domainpart includes a final character considered to be a label
 		// separator (dot) by [IDNA2003] or [DNS], this character MUST be stripped …"

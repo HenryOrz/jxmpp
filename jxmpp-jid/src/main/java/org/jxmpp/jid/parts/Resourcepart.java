@@ -49,13 +49,17 @@ public class Resourcepart extends Part {
 	}
 
 	/**
-	 * Get the {@link Resourcepart} representing the input String.
+	 * Get the {@link Resourcepart} representing the input String. Returns <code>null</code> if the input String is
+	 * <code>null</code>.
 	 *
 	 * @param resource the input String.
-	 * @return the resource part.
+	 * @return the resource part or <code>null</code>.
 	 * @throws XmppStringprepException if an error occurs.
 	 */
 	public static Resourcepart from(String resource) throws XmppStringprepException {
+		if (resource == null) {
+			return null;
+		}
 		resource = XmppStringPrepUtil.resourceprep(resource);
 		// First prep the String, then assure the limits of the *result*
 		assertNotLongerThan1023BytesOrEmpty(resource);
